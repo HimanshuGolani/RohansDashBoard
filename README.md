@@ -24,6 +24,8 @@ Ambulance Calling: Allows users to call for emergency medical assistance promptl
 Medicine Reminders: Sends reminders for medication doses to ensure adherence to treatment plans.
 SOS System: Enables users to send distress signals for immediate help in emergencies.
 
+![hardware](https://github.com/user-attachments/assets/46fb74e1-3401-4b1d-bcfb-4457c912b3c7)
+
 
 ## Tech stacks 💻
 * website: html,css,js
