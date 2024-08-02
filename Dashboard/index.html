@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- aside section start -->
+        <aside>
+
+            <div class="top">
+                <div class="logo">
+                    <h2>MAV<span class="theme-color">E</span>X</h2>
+                </div>
+                <div class="close" id="close_btn">
+                    <span class="material-symbols-outlined">close</span>
+                </div>
+            </div>
+            <!-- end top -->
+
+            <div class="sidebar">
+                <a href="#">
+                    <span class="material-symbols-outlined">grid_view</span>
+                    <h3>Dashboard</h3>
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-outlined">patient_list</span>
+                    <h3>Patient 1</h3>
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-outlined">patient_list</span>
+                    <h3>Patient 2</h3>
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-outlined">patient_list</span>
+                    <h3>Patient 3</h3>
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-outlined">patient_list</span>
+                    <h3>Patient 4</h3>
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-outlined">patient_list</span>
+                    <h3>Patient 5</h3>
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-outlined">settings</span>
+                    <h3>Settings</h3>
+                </a>
+
+                <a href="#" id="add_patient_btn">
+                    <span class="material-symbols-outlined">add</span>
+                    <h3>Add Patient</h3>
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-outlined">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+
+        </aside>
+        <!-- aside section end -->
+
+        <!-- main section start -->
+        <main>
+            <h1>Dashboard</h1>
+            <div class="patient">
+                <div class="patient-info">
+                    <h1><span class="material-symbols-outlined">person</span>Patient Info</h1>
+                    <h2><span class="primary">Name </span>Patient 1</h2>
+                    <h2><span class="primary">Medical Condition </span>XYZ</h2>
+                    <h2><span class="primary">Age </span>123</h2>
+                    <h2><span class="primary">Height </span>123</h2>
+                    <h2><span class="primary">Weight </span>123</h2>
+                    <h2><span class="primary">Device ID </span>123456789</h2>
+                </div>
+                <div class="respond">
+                    <button class="respondBtn">
+                        <span class="material-symbols-outlined">sos</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="insights">
+                <!-- start sales -->
+                <div class="sales">
+                    <span class="material-symbols-outlined">respiratory_rate</span>
+                    <div class="chart-container">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                    <h3 style="text-align: center;">Respiratory Level</h3>
+                </div>
+                <!-- end sales -->
+
+                <!-- start expenses -->
+                <div class="expenses">
+                    <span class="material-symbols-outlined">fluid</span>
+                    <div class="chart-container">
+                        <canvas id="salineChart"></canvas>
+                    </div>
+                    <h3 style="text-align: center;">Saline Level</h3>
+                </div>
+                <!-- end expenses -->
+
+                <!-- start income -->
+                <div class="income">
+                    <span class="material-symbols-outlined">blood_pressure</span>
+                    <div class="chart-container">
+                        <canvas id="hrChart"></canvas>
+                    </div>
+                    <h3 style="text-align: center;">Heart Rate</h3>
+                </div>
+                <!-- end income -->
+            </div>
+            <!-- end insights -->
+
+            <!-- start recent orders -->
+            <div class="recent_order">
+                <h1>Last 24 Hour status</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Medicine Name</th>
+                            <th>Medicine Number</th>
+                            <th>Payments</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dolo</td>
+                            <td>456</td>
+                            <td>Due</td>
+                            <td class="warning">Pending</td>
+                            <td class="primary">Details</td>
+                        </tr>
+
+                        <tr>
+                            <td>Dolo</td>
+                            <td>456</td>
+                            <td>Due</td>
+                            <td class="warning">Pending</td>
+                            <td class="primary">Details</td>
+                        </tr>
+
+                        <tr>
+                            <td>Dolo</td>
+                            <td>456</td>
+                            <td>Due</td>
+                            <td class="warning">Pending</td>
+                            <td class="primary">Details</td>
+                        </tr>
+
+                        <tr>
+                            <td>Dolo</td>
+                            <td>456</td>
+                            <td>Due</td>
+                            <td class="warning">Pending</td>
+                            <td class="primary">Details</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- end recent orders -->
+        </main>
+        <!-- main section end -->
+
+        <!-- right section start -->
+        <div class="right">
+            <div class="top">
+                <button id="menu_bar">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-symbols-outlined active">light_mode</span>
+                    <span class="material-symbols-outlined">dark_mode</span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p><b>MAVEX</b></p>
+                        <p>Admin</p>
+                        <small class="text-muted"></small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="images/profile.jpg" alt="">
+                    </div>
+                </div>
+
+            </div>
+            <!-- end top -->
+
+            <!-- start recent update -->
+        <div class="recent_updates">
+            <h2>Recent Updates</h2>
+            <div class="updates">
+            <div class="update">
+                <div class="profile-photo">
+                    <img src="images/profile.jpg" alt="">
+                </div>
+                <div class="message">
+                    <p><b>Patient 1</b>Got the medicine 1</p>
+                </div>
+            </div>
+
+            <div class="update">
+                <div class="profile-photo">
+                    <img src="images/profile.jpg" alt="">
+                </div>
+                <div class="message">
+                    <p><b>Patient 1</b>Got the medicine 1</p>
+                </div>
+            </div>
+
+            <div class="update">
+                <div class="profile-photo">
+                    <img src="images/profile.jpg" alt="">
+                </div>
+                <div class="message">
+                    <p><b>Patient 1</b>Got the medicine 1</p>
+                </div>
+            </div>
+            </div>
+
+
+        </div>
+
+            <!-- end recent update -->
+
+        <!-- start sale analytics -->
+         <div class="sales_analytics">
+            <h2>Medicine Analytics</h2>
+
+            <div class="item online">
+                <div class="icon">
+                    <span class="material-symbols-outlined">pill</span>
+                </div>
+                <div class="right_text">
+                    <div class="info">
+                        <h3>Medicine 1</h3>
+                        <small class="text-muted">Last seen 2 Hours</small>
+                    </div>
+                    <h5 class="danger">Dosage</h5>
+                    <h3>3849</h3>
+                </div>
+            </div>
+
+            <div class="item online">
+                <div class="icon">
+                    <span class="material-symbols-outlined">pill</span>
+                </div>
+                <div class="right_text">
+                    <div class="info">
+                        <h3>Medicine 1</h3>
+                        <small class="text-muted">Last seen 2 Hours</small>
+                    </div>
+                    <h5 class="danger">Dosage</h5>
+                    <h3>3849</h3>
+                </div>
+            </div>
+
+            <div class="item online">
+                <div class="icon">
+                    <span class="material-symbols-outlined">pill</span>
+                </div>
+                <div class="right_text">
+                    <div class="info">
+                        <h3>Medicine 1</h3>
+                        <small class="text-muted">Last seen 2 Hours</small>
+                    </div>
+                    <h5 class="danger">Dosage</h5>
+                    <h3>3849</h3>
+                </div>
+            </div>
+
+         </div>
+
+         <!-- end sale analytics -->
+
+         <div class="item add_products">
+             <div>
+                <span class="material-symbols-outlined">add</span>
+             </div>
+         </div>
+        </div>
+        <!-- right section end -->
+
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>
