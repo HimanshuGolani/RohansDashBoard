@@ -1,0 +1,10 @@
+boto3
+botocore
+jmespath
+numpy
+python-dateutil
+s3transfer
+six
+urllib3
+websocket-client
+websockets
