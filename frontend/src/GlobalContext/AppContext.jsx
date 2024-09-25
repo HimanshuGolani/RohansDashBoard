@@ -1,29 +1,25 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 const AppContext = createContext();
 
 const AppFieldsProvider = ({ children }) => {
-  const [bloodSpo2, setSpo2] = useState([]);
-  const [bioImpendence, setBioImpedence] = useState([]);
-  const [pulseRate, setPulseRate] = useState([]);
-  const [bodyTemperature, setBodyTemp] = useState([]);
-  const [beatsAvg, setBeatsAvg] = useState([]);
-  const DATA_URL = "54.83.118.12:8000/ws";
+  // Initialize states with default values (0) for safety
+  const [bodyTemperature, setBodyTemp] = useState(0);
+  const [spo2, setSpo2] = useState(0);
+  const [fallDetected, setFallDetected] = useState(0);
+  const [ecgLevels, setEcgLevels] = useState(0);
 
   return (
     <AppContext.Provider
       value={{
-        bloodSpo2,
-        setSpo2,
-        bioImpendence,
-        setBioImpedence,
-        pulseRate,
-        setPulseRate,
         bodyTemperature,
         setBodyTemp,
-        DATA_URL,
-        beatsAvg,
-        setBeatsAvg,
+        spo2,
+        setSpo2,
+        fallDetected,
+        setFallDetected,
+        ecgLevels,
+        setEcgLevels,
       }}
     >
       {children}

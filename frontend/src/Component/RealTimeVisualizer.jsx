@@ -21,7 +21,7 @@ ChartJS.register(
   Legend
 );
 
-function RealTimeVisualizer({ title, chartData }) {
+function RealTimeVisualizer({ title, chartData, minRange, maxRange }) {
   const [data, setData] = useState({
     labels: Array.from({ length: 10 }, (_, i) => i + 1), // Initial labels
     datasets: [
@@ -62,6 +62,7 @@ function RealTimeVisualizer({ title, chartData }) {
       });
     }
   }, [chartData]);
+
   return (
     <div
       style={{
@@ -84,7 +85,7 @@ function RealTimeVisualizer({ title, chartData }) {
           marginBottom: "15px",
         }}
       >
-        {`${title} `}
+        {title}
       </h2>
       <div style={{ position: "relative", width: "100%", height: "100%" }}>
         <Line
@@ -100,9 +101,12 @@ function RealTimeVisualizer({ title, chartData }) {
                 display: true,
                 ticks: {
                   color: "#f5f5f5", // Light Gray Y-axis labels color for contrast
+                  callback: function (value) {
+                    return Math.floor(value); // Ensure integer values for y-axis
+                  },
                 },
-                min: 0,
-                max: 120, // Adjust based on expected data range
+                min: minRange,
+                max: maxRange, // Adjust based on expected data range
               },
             },
             plugins: {

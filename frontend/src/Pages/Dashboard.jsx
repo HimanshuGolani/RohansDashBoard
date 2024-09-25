@@ -1,23 +1,19 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import Header from "../Component/Header";
 import RealTimeVisualizer from "../Component/RealTimeVisualizer";
-import Metrics from "../Component/Metrics";
-import Prediction from "../Component/Prediction";
-import { useAppState } from "../GlobalContext/AppContext"; // Correctly importing the context
+import { useAppState } from "../GlobalContext/AppContext";
 
 function Dashboard() {
   const {
     ecgLevels,
-    bodyPosture,
-    salineWaterLevel,
-    spo2Level,
-    setEcgLevels, // Ensure this is properly imported
-    setBodyPosture,
-    setSalineWaterLevel,
-    setSpo2Level,
+    spo2,
+    bodyTemperature,
+    fallDetected,
+    setEcgLevels,
+    setBodyTemp,
+    setFallDetected,
+    setSpo2,
   } = useAppState();
-
-  // Ensure all the variables and functions exist in the context
 
   const fetchSensorData = () => {
     const socket = new WebSocket("ws://127.0.0.1:5000");
@@ -34,18 +30,21 @@ function Dashboard() {
         const data = message.SensorData;
         console.log("SensorData:", data);
 
-        // Safely update the state only if the set functions are available
-        if (setEcgLevels && setBodyPosture &&  setSpo2Level) {
-          setEcgLevels(data.ecgValue); // Update ECG levels
-          let  fall=data.fallDetected?1:0;
-          setBodyPosture(fall); // Update posture
-           // Update saline water level
-          setSpo2Level(data.bodyTemperature); // Update SPO2 level
-        } else {
-          console.error("set functions not defined properly in context");
-        }
+        // Set sensor data or default to 0
+        setEcgLevels(Number.isFinite(data.ecgValue) ? data.ecgValue : 0);
+        setBodyTemp(
+          Number.isFinite(data.bodyTemperature) ? data.bodyTemperature : 0
+        );
+        setFallDetected(data.fallDetected ? 1 : 0); // Fall detected is binary
+        setSpo2(Number.isFinite(data.spo2) ? data.spo2 : 0);
       } else {
-        console.warn("Received unrecognized message format:", message);
+        console.warn("Unrecognized message format:", message);
+
+        // Reset all values to default
+        setEcgLevels(0);
+        setBodyTemp(0);
+        setFallDetected(0);
+        setSpo2(0);
       }
     };
 
@@ -60,23 +59,39 @@ function Dashboard() {
 
   useEffect(() => {
     const intervalId = setInterval(fetchSensorData, 2000);
-
     return () => clearInterval(intervalId);
   }, []);
 
   return (
     <div className="dashboard" style={{ backgroundColor: "#ffffff" }}>
       <Header />
-      <h1 style={{ textAlign: "center", color: "#000000" }}></h1> {/*  Title */}
       <div className="gaps">
-        <RealTimeVisualizer title="ECG Levels:" chartData={ecgLevels} />
-        <RealTimeVisualizer title="Body Posture:" chartData={bodyPosture} />
-        <RealTimeVisualizer title="Saline Water Level:" chartData={salineWaterLevel} />
-        <RealTimeVisualizer title="SPO2 Level:" chartData={spo2Level} />
-      </div>
-      <div className="metrics-prediction">
-        <Metrics />
-        <Prediction />
+        <RealTimeVisualizer
+          title="ECG Levels"
+          chartData={ecgLevels}
+          minRange={0}
+          maxRange={100}
+        />
+        <RealTimeVisualizer
+          title="Body Temperature"
+          chartData={bodyTemperature}
+          minRange={0}
+          maxRange={38}
+        />
+
+        <RealTimeVisualizer
+          title="Fall Detected"
+          chartData={fallDetected}
+          minRange={0}
+          maxRange={1}
+        />
+
+        <RealTimeVisualizer
+          title="Spo2"
+          chartData={spo2}
+          minRange={0}
+          maxRange={120}
+        />
       </div>
     </div>
   );
